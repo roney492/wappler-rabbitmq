@@ -1,5 +1,5 @@
 // JavaScript Document
-// Ken Truesdale - ken@uniqueideas.com
+// Roney 
 
 const { toSystemPath } = require('../../../lib/core/path');
 const amqp = require('amqplib');

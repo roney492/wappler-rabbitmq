@@ -13,16 +13,6 @@
 			}
 		},
   dataPickObject: true,
-  dataScheme: [
-    {
-        name: 'job_id', 
-        type: 'text'
-        },
-        {
-        name: 'queue', 
-        type: 'text'
-        }
-  ],
   properties : [
       {
         group: 'Step properties',
@@ -65,7 +55,7 @@
             title: 'RabbitMQ Server Host', 
             type: 'text', 
             required: true, 
-            defaultValue: '',
+            defaultValue: 'rabbit',
             serverDataBindings: true,
             help: 'Enter the Hostname/IP of the RabbitMQ Server.'
         }

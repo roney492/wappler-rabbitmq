@@ -1,0 +1,96 @@
+[
+{
+  type: 'rabbitmq_queues_add_job',
+  module : 'rabbitmq_queues',
+  action : 'add_job',
+  groupTitle : 'Rabbitmq Queues',
+  groupIcon : 'fas fa-solid fa-rabbit comp-exec',
+  title : 'Add Job @@var(actionName)@@',
+  icon : 'fas fa-plus-octagon comp-exec',
+  usedModules : {
+			node: {
+				 "amqplib": "^0.10.3",
+			}
+		},
+  dataPickObject: true,
+  dataScheme: [
+    {
+        name: 'job_id', 
+        type: 'text'
+        },
+        {
+        name: 'queue', 
+        type: 'text'
+        }
+  ],
+  properties : [
+      {
+        group: 'Step properties',
+        variables: [
+            { 
+            name: 'actionName', 
+            optionName: 'name', 
+            title: 'Name', 
+            type: 'text', 
+            required: true, 
+            defaultValue: ''
+        },
+        
+        { 
+            name: 'output', 
+            optionName: 'output', 
+            title: 'Output', 
+            type: 'boolean', 
+            defaultValue: false 
+        }
+        ]
+      },
+      {
+        group: 'Queue Config',
+        variables: [
+            
+          { 
+            name: 'queue_name', 
+            optionName: 'queue_name', 
+            title: 'Queue name', 
+            type: 'text', 
+            required: true, 
+            defaultValue: '',
+            serverDataBindings: true,
+            help: 'Select the queue that will process this job.'
+        },
+        { 
+            name: 'hostname', 
+            optionName: 'hostname', 
+            title: 'RabbitMQ Server Host', 
+            type: 'text', 
+            required: true, 
+            defaultValue: '',
+            serverDataBindings: true,
+            help: 'Enter the Hostname/IP of the RabbitMQ Server.'
+        }
+        ]
+      },
+        {
+        group: 'Job Config',
+        variables: [
+        { name: 'bindings', optionName: 'bindings', key: 'var', keyValue: 'value', title: 'PARAM\'s', type: 'grid', defaultValue: {}, serverDataBindings: true,
+                columns: [
+                    { field: 'var', caption: 'Variable', size: '30%', editable: {type: 'text'}},
+                    { field: 'value', caption: 'Value', size: '70%', editable: {type: 'datapicker'}}]
+        },
+        { 
+            name: 'delay_ms', 
+            optionName: 'delay_ms', 
+            title: 'Minimum delay', 
+            type: 'text', 
+            required: false, 
+            defaultValue: '0',
+            serverDataBindings: true,
+            help: 'When the delay time has passed the job will be moved to the beginning of the queue and be processed as soon as a worker is idle.'
+        },
+        ]
+      }
+  ]
+}
+]
